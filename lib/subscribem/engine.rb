@@ -1,3 +1,5 @@
+require 'warden'
+
 module Subscribem
   class Engine < ::Rails::Engine
     isolate_namespace Subscribem
@@ -7,3 +9,4 @@ module Subscribem
     end
   end
 end
+
