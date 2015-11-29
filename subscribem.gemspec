@@ -19,8 +19,10 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.2.4"
   s.add_dependency "warden", "1.2.3"
   s.add_dependency "bcrypt", "3.1.10"
+  s.add_dependency "dynamic_form", '1.1.4'
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", "3.3.2"
   s.add_development_dependency "capybara", "2.4.4"
+  s.add_development_dependency "factory_girl", "4.4.0"
 end

@@ -1,4 +1,5 @@
 require 'warden'
+require 'dynamic_form'
 
 module Subscribem
   class Engine < ::Rails::Engine
@@ -17,6 +18,7 @@ module Subscribem
         manager.serialize_from_session do |id|
           Subscribem::User.find(id)
         end
+        manager.default_strategies :password
       end
     end
   end

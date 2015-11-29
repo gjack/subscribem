@@ -8,17 +8,22 @@ module Subscribem
     end
     
     def create
-      account = Subscribem::Account.create(account_params)
-      env['warden'].set_user(account.owner, scope: :user)
-      env['warden'].set_user(account, scope: :account)
-      flash[:success] = "Your account has been successfully created."
-      redirect_to subscribem.root_url
+      @account = Subscribem::Account.new(account_params)
+      if @account.save
+        env['warden'].set_user(@account.owner, scope: :user)
+        env['warden'].set_user(@account, scope: :account)
+        flash[:success] = "Your account has been successfully created."
+        redirect_to subscribem.root_url(subdomain: @account.subdomain)
+      else
+        flash[:error] = "Sorry, your account could not be created."
+        render :new
+      end
     end
     
     private
     
     def account_params
-      params.require(:account).permit(:name,
+      params.require(:account).permit(:name, :subdomain,
             {owner_attributes: [:email, :password, :password_confirmation]})
     end
   end
