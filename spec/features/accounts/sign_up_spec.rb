@@ -12,6 +12,6 @@ feature "Accounts" do
     click_button "Create Account"
     success_message = "Your account has been successfully created."
     expect(page).to have_content(success_message)
-    expect(page).to have_content("Signed in as subscribem@example.com")
+    expect(page).to have_content("Signed in as: subscribem@example.com")
   end
 end
