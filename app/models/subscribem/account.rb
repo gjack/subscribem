@@ -9,5 +9,7 @@ module Subscribem
     validates :subdomain, presence: true, uniqueness: true
     belongs_to :owner, class_name: "Subscribem::User"
     accepts_nested_attributes_for :owner
+    has_many :members, class_name: "Subscribem::Member"
+    has_many :users, through: :members
   end
 end
