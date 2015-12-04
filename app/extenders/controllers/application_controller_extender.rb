@@ -13,9 +13,9 @@
   def current_user
     if user_signed_in?
       @current_user ||= begin
-        user_id = env['warden'].user(scope: :user)
+        user = env['warden'].user(scope: :user)
         
-        Subscribem::User.find(user_id)
+        Subscribem::User.find(user.id)
       end
     end
   end
@@ -28,7 +28,7 @@
   
   def authenticate_user!
     unless user_signed_in?
-      flash[:info] = 'Please sign in'
+      flash[:info] = 'Please sign in.'
       redirect_to '/sign_in'
     end
   end
