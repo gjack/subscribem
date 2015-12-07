@@ -1,7 +1,8 @@
 require 'warden'
 require 'dynamic_form'
-require 'subscribem/active_record_extensions'
+#require 'subscribem/active_record_extensions'
 require 'apartment'
+require 'apartment/elevators/subdomain'
 
 module Subscribem
   class Engine < ::Rails::Engine
@@ -30,6 +31,10 @@ module Subscribem
         end
         manager.default_strategies :password
       end
+    end
+    
+    initializer "subscribem.middleware.apartment" do
+      Rails.application.config.middleware.use Apartment::Elevators::Subdomain
     end
   end
 end

@@ -55,4 +55,8 @@ RSpec.configure do |config|
   config.after type: :feature do
       logout
   end
+  
+  config.after(:each) do
+    Apartment::Tenant.reset
+  end
 end
